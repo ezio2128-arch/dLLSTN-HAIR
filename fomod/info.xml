@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fomod>
+  <Name>TN Character Rebuild - Community Shaders Addon</Name>
+  <Author>True North / custom conversion</Author>
+  <Version>0.6.0</Version>
+  <Website></Website>
+  <Description>Standalone Hair Specular shader addon for Community Shaders 1.8.3. Does not replace CommunityShaders.dll.</Description>
+</fomod>

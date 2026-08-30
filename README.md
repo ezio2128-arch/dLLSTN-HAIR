@@ -1,24 +1,30 @@
-# TN Character Rebuild 0.5 — Hair Specular UI
+# TN Character Rebuild - CS 1.8.3 Addon v0.6
 
-Código fuente integrado para Community Shaders 1.8.3 / Skyrim AE 1.6.1170.
+Standalone MO2 addon for **Community Shaders 1.8.3** + **Hair Specular 1.1.2**.
 
-Incluye:
+## What this version does
+- Removes the integrated **TN Adaptive 80 (AD80)** from the package.
+- Does **not** ship a custom `CommunityShaders.dll`.
+- Does **not** replace `Shaders/Common/SharedData.hlsli`.
+- Only overrides Hair Specular shader assets:
+  - `Shaders/Hair/Hair.hlsli`
+  - `Shaders/Hair/TangentShift.dds`
 
-- TN Adaptive 80 v0.5.
-- Interruptor `Enable TN Medieval Hair` dentro de Hair Specular.
-- Presets Balanced, Cinematic y Extreme.
-- Controles en tiempo real para intensidad, separación, fibras finas, cavidad y reflejos.
-- Persistencia en `SettingsUser.json`.
-- Shader reversible: OFF devuelve matemáticamente el comportamiento original de Hair Specular.
+## Included presets
+- Balanced
+- Cinematic (recommended; matches the v0.5 default TN values)
+- Extreme
 
-El workflow genera el artifact instalable `TN-Character-Rebuild-05-CS183-MO2`.
-
-## Orden MO2
-
+## MO2 load order
 1. Community Shaders 1.8.3
 2. Hair Specular 1.1.2
 3. Community Shaders True North Settings
-4. TN Character Rebuild 0.5 (incluye Adaptive 80 v0.5)
-5. TN Smooth Motion Blur, opcional
+4. TN Adaptive 80 (optional, separate mod)
+5. TN Character Rebuild - CS Addon v0.6
+6. TN Smooth Motion Blur (optional)
 
-No debe instalarse TN Adaptive 80 v0.5 como otra DLL encima o debajo: esta compilación ya lo incluye.
+## GitHub Actions
+The workflow at `.github/workflows/build-mo2.yml` packages the files into:
+`TN-Character-Rebuild-CS183-Addon-v0.6-MO2.zip`
+
+Upload the repository contents to GitHub root, then run **Actions -> Build TN Character Rebuild CS183 Addon v0.6 MO2**.

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
+  <moduleName>TN Character Rebuild - CS 1.8.3 Addon</moduleName>
+  <requiredInstallFiles>
+    <folder source="Core" destination="" priority="0" />
+  </requiredInstallFiles>
+  <installSteps order="Explicit">
+    <installStep name="TN Medieval Hair Preset">
+      <optionalFileGroups order="Explicit">
+        <group name="Choose one visual profile" type="SelectExactlyOne">
+          <plugins order="Explicit">
+            <plugin name="Balanced">
+              <description>Subtle strand separation and highlight control. Best if you want the original Hair Specular look to remain dominant.</description>
+              <files><folder source="Presets/Balanced" destination="" priority="10" /></files>
+              <typeDescriptor><type name="Optional" /></typeDescriptor>
+            </plugin>
+            <plugin name="Cinematic (Recommended)">
+              <description>Matches the v0.5 default look: full TN Medieval Hair reconstruction with balanced cavity depth and highlight compression.</description>
+              <files><folder source="Presets/Cinematic" destination="" priority="10" /></files>
+              <typeDescriptor><type name="Recommended" /></typeDescriptor>
+            </plugin>
+            <plugin name="Extreme">
+              <description>Stronger strand-group separation, deeper cavities and heavier highlight control.</description>
+              <files><folder source="Presets/Extreme" destination="" priority="10" /></files>
+              <typeDescriptor><type name="Optional" /></typeDescriptor>
+            </plugin>
+          </plugins>
+        </group>
+      </optionalFileGroups>
+    </installStep>
+  </installSteps>
+</config>
