@@ -1,0 +1,18 @@
+TN Character Rebuild 0.5 - estado de compilacion
+================================================
+
+COMPLETADO
+- Integracion sobre Community Shaders 1.8.3.
+- Fusion con TN Adaptive 80 v0.5.
+- Interruptor dentro de Hair Specular.
+- Presets Balanced, Cinematic y Extreme.
+- Controles persistentes en SettingsUser.json.
+- Layout C++/HLSL validado: 96 bytes.
+- Pruebas portables de Adaptive 80 superadas.
+- Workflow Windows/MSVC incluido.
+
+PENDIENTE
+- Ejecutar .github/workflows/build-mo2.yml en GitHub Actions.
+- Descargar el artifact TN-Character-Rebuild-05-CS183-MO2.
+
+Este ZIP de codigo fuente NO es instalable en MO2 y no contiene una DLL.

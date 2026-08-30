@@ -1,0 +1,14 @@
+{
+  "name": "TN Character Rebuild",
+  "version": "0.5",
+  "base": "Community Shaders 1.8.3",
+  "game": "Skyrim AE 1.6.1170",
+  "includes": [
+    "TN Adaptive 80 v0.5",
+    "TN Medieval Hair Hair Specular UI",
+    "Balanced/Cinematic/Extreme presets",
+    "Runtime constant-buffer controls"
+  ],
+  "compiled_binary_in_source_bundle": false,
+  "build": "GitHub Actions Windows 2025 / MSVC"
+}
