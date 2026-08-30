@@ -1,9 +1,13 @@
 {
-  "name": "TN Character Rebuild - CS183 Addon",
-  "version": "0.6.0",
-  "type": "mo2-package",
-  "community_shaders": "1.8.3",
-  "requires": ["Hair Specular 1.1.2"],
-  "contains_ad80": false,
-  "contains_custom_communityshaders_dll": false
+  "name": "TN Character Rebuild",
+  "version": "0.5.1",
+  "base": "Community Shaders 1.8.3",
+  "game": "Skyrim AE 1.6.1170",
+  "includes": [
+    "TN Medieval Hair Hair Specular UI",
+    "Balanced/Cinematic/Extreme presets",
+    "Runtime constant-buffer controls"
+  ],
+  "compiled_binary_in_source_bundle": false,
+  "build": "GitHub Actions Windows 2025 / MSVC"
 }

@@ -1,5 +1,17 @@
-STATUS: READY FOR GITHUB ACTIONS
-PACKAGE: TN Character Rebuild - CS183 Addon v0.6
-AD80: REMOVED
-CUSTOM CommunityShaders.dll: REMOVED
-BUILD MODE: PACKAGE ONLY (NO DLL COMPILATION)
+TN Character Rebuild 0.5.1 - estado de compilacion
+==================================================
+
+COMPLETADO
+- Integracion sobre Community Shaders 1.8.3.
+- TN Adaptive 80 eliminado de la compilacion.
+- Interruptor dentro de Hair Specular.
+- Presets Balanced, Cinematic y Extreme.
+- Controles persistentes en SettingsUser.json.
+- Layout C++/HLSL validado: 96 bytes.
+- Workflow Windows/MSVC incluido.
+
+PENDIENTE
+- Ejecutar .github/workflows/build-mo2.yml en GitHub Actions.
+- Descargar el artifact TN-Character-Rebuild-051-CS183-MO2.
+
+Este ZIP de codigo fuente NO es instalable en MO2 y no contiene una DLL.
