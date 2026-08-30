@@ -1,4 +1,4 @@
-name: Build TN Character Rebuild 0.5.1 MO2
+name: Build TN Character Rebuild 0.6 MO2
 
 on:
   workflow_dispatch:
@@ -85,12 +85,12 @@ jobs:
         run: |
           $dll=Get-ChildItem cs/build -Filter CommunityShaders.dll -File -Recurse | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
           if (-not $dll) { throw 'CommunityShaders.dll was not produced.' }
-          $pkg=Join-Path $PWD 'out/TN-Character-Rebuild-051-CS183-MO2'
+          $pkg=Join-Path $PWD 'out/TN-Character-Rebuild-06-CS183-MO2'
           $plugin=Join-Path $pkg 'SKSE/Plugins'
           $tr=Join-Path $plugin 'CommunityShaders/Translations'
           $common=Join-Path $pkg 'Shaders/Common'
           $hair=Join-Path $pkg 'Shaders/Hair'
-          $doc=Join-Path $pkg 'Documentation/TN Character Rebuild 0.5.1'
+          $doc=Join-Path $pkg 'Documentation/TN Character Rebuild 0.6'
           New-Item -ItemType Directory -Force -Path $tr,$common,$hair,$doc | Out-Null
           Copy-Item $dll.FullName (Join-Path $plugin 'CommunityShaders.dll') -Force
           Copy-Item overlay/package/SKSE/Plugins/CommunityShaders/Translations/en.json $tr -Force
@@ -103,18 +103,18 @@ jobs:
           [General]
           gameName=Skyrim Special Edition
           modid=0
-          version=0.5.1
-          newestVersion=0.5.1
-          installationFile=TN-Character-Rebuild-051-CS183-MO2.zip
-          notes=TN Character Rebuild 0.5.1 without TN Adaptive 80. Hair Specular TN controls only.
+          version=0.6.0
+          newestVersion=0.6.0
+          installationFile=TN-Character-Rebuild-06-CS183-MO2.zip
+          notes=TN Character Rebuild 0.6 without TN Adaptive 80. White/grey hair bypass and optimized TN strand shading.
           '@ | Set-Content (Join-Path $pkg 'meta.ini') -Encoding UTF8
-          Compress-Archive -Path "$pkg/*" -DestinationPath 'out/TN-Character-Rebuild-051-CS183-MO2.zip' -Force
-          Get-FileHash 'out/TN-Character-Rebuild-051-CS183-MO2.zip' -Algorithm SHA256 | Format-List
+          Compress-Archive -Path "$pkg/*" -DestinationPath 'out/TN-Character-Rebuild-06-CS183-MO2.zip' -Force
+          Get-FileHash 'out/TN-Character-Rebuild-06-CS183-MO2.zip' -Algorithm SHA256 | Format-List
 
       - name: Upload MO2 installer
         uses: actions/upload-artifact@v7
         with:
-          name: TN-Character-Rebuild-051-CS183-MO2
-          path: out/TN-Character-Rebuild-051-CS183-MO2.zip
+          name: TN-Character-Rebuild-06-CS183-MO2
+          path: out/TN-Character-Rebuild-06-CS183-MO2.zip
           if-no-files-found: error
           retention-days: 30
