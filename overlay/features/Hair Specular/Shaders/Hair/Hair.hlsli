@@ -35,34 +35,65 @@ namespace Hair
 		return F0.xxx;
 	}
 
+	// TN 0.6 fast path: inexpensive UV hash used instead of three transcendental
+	// sin() evaluations. Stable in UV space, adds no texture samples and keeps the
+	// same purpose as the original breakup: separating neighbouring strand groups.
+	float TNFastHash12(float2 p)
+	{
+		float3 p3 = frac(float3(p.x, p.y, p.x) * 0.1031);
+		p3 += dot(p3, p3.yzx + 33.33);
+		return frac((p3.x + p3.y) * p3.z);
+	}
+
 	float TNMedievalStrandVariation(float2 uv)
 	{
-		// Stable UV-space breakup: no temporal noise and no extra texture samples.
-		// It separates the lighting response of neighbouring strand groups without
-		// changing the hairstyle, silhouette or alpha coverage.
-		float primary = sin(dot(uv, float2(173.0, 61.0)) + sin(uv.y * 97.0) * 1.7);
-		float secondary = sin(dot(uv, float2(43.0, 211.0)) + primary * 0.8);
-		float fineStrands = sin(dot(uv, float2(397.0, 131.0)) + secondary * 1.35);
+		float primary = TNFastHash12(uv * float2(173.0, 61.0));
+		float secondary = frac(dot(uv, float2(43.0, 211.0)) + primary * 0.6180339);
+		float fineStrands = frac(dot(uv, float2(397.0, 131.0)) + secondary * 0.4142136);
 		float fineWeight = 0.16 * clamp(SharedData::hairSpecularSettings.TNFineStrands, 0.0, 1.5);
-		return saturate(0.5 + primary * 0.28 + secondary * 0.18 + fineStrands * fineWeight);
+		return saturate(0.5 + (primary - 0.5) * 0.56 + (secondary - 0.5) * 0.36 + (fineStrands - 0.5) * (fineWeight * 2.0));
+	}
+
+	// Automatic white/grey-hair exclusion. We intentionally use the final hair
+	// base colour rather than a texture ID, so this also works with NPC overhauls.
+	// Neutral dark hair is retained; only sufficiently bright, low-chroma colours
+	// take the bypass. This is deliberately branch-friendly because a hair mesh
+	// normally contains spatially coherent colour values.
+	bool TNIsWhiteOrGreyHair(float3 baseColor)
+	{
+		float3 c = saturate(baseColor);
+		float maxC = max(c.r, max(c.g, c.b));
+		float minC = min(c.r, min(c.g, c.b));
+		float chromaRatio = (maxC - minC) / max(maxC, 1e-4);
+		float luminance = Color::RGBToLuminance(c);
+		return (luminance >= 0.34 && chromaRatio <= 0.13) ||
+			(luminance >= 0.64 && chromaRatio <= 0.20);
 	}
 
 	float TNAdaptiveStrandCavity(float2 uv, float3 baseColor)
 	{
-		// Alpha 0.3 compatibility profile for the UV layouts observed in
-		// Dibella's Blessing and Male NPC Overhaul FaceGen hair/beard geometry.
-		// Dark hair receives a gentler floor so its detail is not crushed, while
-		// light hair gets deeper color-relative separation between strand groups.
+		// Early exits are placed before all strand-variation work. White/grey hair
+		// therefore follows unmodified Hair Specular shading, and disabled/zero TN
+		// settings are effectively free beyond the branch.
+		[branch]
 		if (!SharedData::hairSpecularSettings.TNEnabled || SharedData::hairSpecularSettings.TNIntensity <= 0.0)
 			return 1.0;
 
+		[branch]
+		if (TNIsWhiteOrGreyHair(baseColor))
+			return 1.0;
+
 		float intensity = clamp(SharedData::hairSpecularSettings.TNIntensity, 0.0, 1.5);
+		float cavityAmount = saturate(SharedData::hairSpecularSettings.TNCavityDepth * intensity);
+		[branch]
+		if (cavityAmount <= 0.0)
+			return 1.0;
+
 		float separation = clamp(SharedData::hairSpecularSettings.TNSeparation, 0.0, 1.5);
 		float variation = lerp(0.5, TNMedievalStrandVariation(uv), separation);
 		float strandGroup = smoothstep(0.30, 0.66, variation);
 		float luminance = saturate(Color::RGBToLuminance(baseColor) * 2.0);
 		float cavityFloor = lerp(0.72, 0.43, luminance);
-		float cavityAmount = saturate(SharedData::hairSpecularSettings.TNCavityDepth * intensity);
 		return lerp(1.0, lerp(cavityFloor, 1.05, strandGroup), cavityAmount);
 	}
 
@@ -303,10 +334,14 @@ namespace Hair
 		float luminance = Color::RGBToLuminance(color);
 		float3 saturatedColor = lerp(float3(luminance, luminance, luminance), color, saturation);
 
-		// Alpha 0.3: highlight compression works with the adaptive cavity layer.
+		// White/grey hair keeps the original Hair Specular saturation result.
+		// This also skips the TN highlight-compression math for those pixels.
+		[branch]
+		if (!SharedData::hairSpecularSettings.TNEnabled || TNIsWhiteOrGreyHair(color))
+			return saturate(saturatedColor);
+
 		float peak = max(saturatedColor.r, max(saturatedColor.g, saturatedColor.b));
-		float tnHighlight = SharedData::hairSpecularSettings.TNEnabled ?
-			clamp(SharedData::hairSpecularSettings.TNHighlightReduction * SharedData::hairSpecularSettings.TNIntensity, 0.0, 2.25) : 0.0;
+		float tnHighlight = clamp(SharedData::hairSpecularSettings.TNHighlightReduction * SharedData::hairSpecularSettings.TNIntensity, 0.0, 2.25);
 		float highlightCompression = rcp(1.0 + 0.26 * peak * tnHighlight);
 		return saturate(saturatedColor * highlightCompression);
 	}
