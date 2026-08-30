@@ -120,7 +120,7 @@
     "feature.hair_specular.tn_beard_enhancement": "Mejorar barbas",
     "feature.hair_specular.tn_cavity_depth": "Profundidad entre mechones",
     "feature.hair_specular.tn_enabled": "Activar TN Medieval Hair",
-    "feature.hair_specular.tn_enabled_tooltip": "Activa o desactiva la separación de mechones y la reconstrucción cinematográfica de True North sin desactivar Hair Specular. El cabello blanco y gris neutro se excluye automáticamente.",
+    "feature.hair_specular.tn_enabled_tooltip": "Activa o desactiva la separación de mechones y la reconstrucción cinematográfica de True North sin desactivar Hair Specular.",
     "feature.hair_specular.tn_fine_strands": "Fibras finas",
     "feature.hair_specular.tn_highlight_reduction": "Reducción de reflejos",
     "feature.hair_specular.tn_intensity": "Intensidad general",

@@ -725,7 +725,7 @@
     "feature.hair_specular.tn_beard_enhancement": "Enhance Beards",
     "feature.hair_specular.tn_cavity_depth": "Cavity Depth",
     "feature.hair_specular.tn_enabled": "Enable TN Medieval Hair",
-    "feature.hair_specular.tn_enabled_tooltip": "Toggle the True North strand separation and cinematic material reconstruction without disabling Hair Specular. White and neutral grey hair are automatically excluded.",
+    "feature.hair_specular.tn_enabled_tooltip": "Toggle the True North strand separation and cinematic material reconstruction without disabling Hair Specular.",
     "feature.hair_specular.tn_fine_strands": "Fine Strands",
     "feature.hair_specular.tn_highlight_reduction": "Highlight Reduction",
     "feature.hair_specular.tn_intensity": "Overall Intensity",

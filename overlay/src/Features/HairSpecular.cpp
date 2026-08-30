@@ -92,27 +92,27 @@ void HairSpecular::DrawSettings()
 
 	if (settings.TNEnabled) {
 		if (ImGui::Button(T(TKEY("tn_preset_balanced"), "Balanced"))) {
-			settings.TNIntensity = 0.65f;
-			settings.TNSeparation = 0.70f;
-			settings.TNFineStrands = 0.55f;
-			settings.TNCavityDepth = 0.65f;
-			settings.TNHighlightReduction = 0.65f;
+			settings.TNIntensity = 0.60f;
+			settings.TNSeparation = 0.88f;
+			settings.TNFineStrands = 0.42f;
+			settings.TNCavityDepth = 0.54f;
+			settings.TNHighlightReduction = 0.58f;
 		}
 		ImGui::SameLine();
 		if (ImGui::Button(T(TKEY("tn_preset_cinematic"), "Cinematic"))) {
-			settings.TNIntensity = 1.0f;
-			settings.TNSeparation = 1.0f;
-			settings.TNFineStrands = 1.0f;
-			settings.TNCavityDepth = 1.0f;
-			settings.TNHighlightReduction = 1.0f;
+			settings.TNIntensity = 0.92f;
+			settings.TNSeparation = 1.10f;
+			settings.TNFineStrands = 0.72f;
+			settings.TNCavityDepth = 0.82f;
+			settings.TNHighlightReduction = 0.85f;
 		}
 		ImGui::SameLine();
 		if (ImGui::Button(T(TKEY("tn_preset_extreme"), "Extreme"))) {
-			settings.TNIntensity = 1.35f;
-			settings.TNSeparation = 1.30f;
-			settings.TNFineStrands = 1.35f;
-			settings.TNCavityDepth = 1.30f;
-			settings.TNHighlightReduction = 1.25f;
+			settings.TNIntensity = 1.12f;
+			settings.TNSeparation = 1.28f;
+			settings.TNFineStrands = 0.96f;
+			settings.TNCavityDepth = 1.00f;
+			settings.TNHighlightReduction = 0.98f;
 		}
 
 		ImGui::SliderFloat(T(TKEY("tn_intensity"), "Overall Intensity"), &settings.TNIntensity, 0.0f, 1.5f, "%.2f");

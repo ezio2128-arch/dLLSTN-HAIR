@@ -1,20 +1,17 @@
-TN Character Rebuild 0.6 - estado de compilacion
-================================================
+TN Character Rebuild 0.5.2 - estado de compilacion
+==================================================
 
 COMPLETADO
-- Base: Community Shaders 1.8.3.
-- TN Adaptive 80 sigue fuera del proyecto.
-- TN Medieval Hair dentro de Hair Specular.
-- Presets Balanced, Cinematic y Extreme conservados.
-- Cabello blanco/gris neutro excluido automáticamente del procesamiento TN.
-- Compresión TN de reflejos omitida en cabello blanco/gris.
-- Tres sin() de variación TN sustituidos por una ruta UV de menor coste.
-- Salidas tempranas para TN OFF, intensidad/cavidad cero y cabello blanco/gris.
-- Sin nuevos campos en SharedData: layout C++/HLSL permanece en 96 bytes.
-- Workflow Windows/MSVC actualizado.
+- Integracion sobre Community Shaders 1.8.3.
+- TN Adaptive 80 permanece fuera de la compilacion.
+- Interruptor dentro de Hair Specular.
+- Presets Balanced, Cinematic y Extreme reajustados.
+- Perfil de separadores finos y cuerpo del cabello mas suave.
+- Controles persistentes en SettingsUser.json.
+- Workflow Windows/MSVC incluido.
 
 PENDIENTE
 - Ejecutar .github/workflows/build-mo2.yml en GitHub Actions.
-- Descargar el artifact TN-Character-Rebuild-06-CS183-MO2.
+- Descargar el artifact TN-Character-Rebuild-052-CS183-MO2.
 
-Este ZIP de código fuente NO es instalable directamente en MO2 y no contiene una DLL precompilada.
+Este ZIP de codigo fuente NO es instalable en MO2 y no contiene una DLL.
