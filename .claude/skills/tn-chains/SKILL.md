@@ -13,6 +13,7 @@ Before implementation, also read the sibling Skills:
 - `.claude/skills/skyrim-papyrus-skse/SKILL.md`
 - `.claude/skills/skyrim-nif-textures/SKILL.md`
 - `.claude/skills/skyrim-validation-qa/SKILL.md`
+- `.claude/skills/youtube-video-animation-reference/SKILL.md` when URLs/video references are supplied
 
 Read `references/latest-design-authority.md` first. It contains project decisions that override older documents when they conflict.
 
